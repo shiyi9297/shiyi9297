@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Summarizer - Quickly Extract Key Information from PDF Documents</title>
+    <meta name="description" content="PDF Summarizer uses AI technology to generate concise summaries of PDF documents, saving time and improving comprehension for researchers, students, and professionals.">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold mb-8">PDF Summarizer</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4">Input</h2>
+                <input type="file" id="pdfFile" accept=".pdf" class="mb-4">
+                <button id="summarizeBtn" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Summarize</button>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold mb-4">Summary</h2>
+                <div id="summary" class="h-64 overflow-y-auto border p-4"></div>
+            </div>
+        </div>
+        
+        <div id="progressBarContainer" class="mt-8 mb-8 hidden">
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div id="progressBar" class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+            </div>
+            <p id="progressText" class="text-center mt-2">Processing...</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-3xl font-semibold mb-4">What Is PDF Summarizer?</h2>
+            
+            <p class="mb-4">PDF Summarizer is an advanced technology that automatically analyzes and extracts key information from PDF documents, condensing it into concise summaries. Utilizing cutting-edge natural language processing and machine learning algorithms, our tool identifies and extracts the main content from PDFs, offering users a quick and efficient way to access critical information.</p>
+
+            <h3 class="text-2xl font-semibold mb-3">How Does PDF Summarization Work?</h3>
+            <p class="mb-4">Our PDF Summarizer tool automates the process of content extraction and summary generation. Here's how you can use it:</p>
+            <ol class="list-decimal list-inside mb-4">
+                <li><strong>Upload Your PDF:</strong> Simply click the upload button and select the PDF file you wish to summarize.</li>
+                <li><strong>Generate Summary:</strong> Once uploaded, our tool will automatically parse the PDF content and generate a summary within seconds.</li>
+                <li><strong>View and Export:</strong> You can view the generated summary online, export it as a text file, or copy it to your clipboard for immediate use.</li>
+            </ol>
+
+            <h3 class="text-2xl font-semibold mb-3">Key Features of Our PDF Summarizer</h3>
+            <ul class="list-disc list-inside mb-4">
+                <li><strong>Automatic Parsing:</strong> Advanced algorithms that automatically interpret PDF content.</li>
+                <li><strong>Precise Extraction:</strong> Identifies and extracts key information while eliminating redundant content.</li>
+                <li><strong>Rapid Generation:</strong> Produces document summaries in seconds, saving you valuable time.</li>
+                <li><strong>Multi-Format Support:</strong> Compatible with various PDF formats, requiring no manual adjustments.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mb-3">Why Use Our PDF Summarizer?</h3>
+            <p class="mb-4">Our PDF Summarizer tool allows you to easily grasp the main content of documents without reading them word for word. This is particularly useful for:</p>
+            <ul class="list-disc list-inside mb-4">
+                <li><strong>Academic Research:</strong> Quickly capture the core content of papers, accelerating literature reviews.</li>
+                <li><strong>Business Reports:</strong> Swiftly understand key points in reports, supporting efficient decision-making.</li>
+                <li><strong>Daily Reading:</strong> Save time by quickly grasping the essentials of lengthy documents.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mb-3">Application Scenarios</h3>
+            <p class="mb-4">Whether you're a student, researcher, business manager, or general reader, our PDF Summarizer tool offers convenient services for various needs:</p>
+            <ul class="list-disc list-inside mb-4">
+                <li><strong>Academic Use:</strong> Summarize research papers and academic reports for easy reading and citation.</li>
+                <li><strong>Business Use:</strong> Quickly review business reports and market analyses to support efficient decision-making.</li>
+                <li><strong>Personal Use:</strong> Read books and articles more efficiently by extracting main content.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mb-3">Learning PDF Summarization</h3>
+            <p class="mb-4">To learn how to effectively summarize PDF content, you can:</p>
+            <ul class="list-disc list-inside mb-4">
+                <li><strong>Follow Online Tutorials:</strong> Learn how to use our PDF Summarizer tool and understand basic operational steps.</li>
+                <li><strong>Practice:</strong> Familiarize yourself with the process of PDF content parsing and information extraction through hands-on practice.</li>
+                <li><strong>Utilize Our Tool:</strong> Quickly master document summarization techniques with the help of our PDF Summarizer.</li>
+            </ul>
+
+            <h3 class="text-2xl font-semibold mb-3">Technology Behind Our PDF Summarizer</h3>
+            <p class="mb-4">Our tool employs state-of-the-art natural language processing and machine learning techniques. It uses advanced algorithms to understand context, identify key information, and generate coherent summaries. The system is designed to handle various document structures and content types, ensuring high-quality summaries across different fields and subjects.</p>
+
+            <h3 class="text-2xl font-semibold mb-3">Privacy and Security</h3>
+            <p class="mb-4">We prioritize the confidentiality of your documents. All uploaded PDFs are processed securely, and no content is stored after summarization. Our system adheres to strict data protection protocols to ensure the privacy and security of your sensitive information.</p>
+
+            <p class="mb-4">Our PDF Summarizer tool not only enhances information retrieval efficiency but also provides users with a convenient reading experience. Whether for academic research or daily reading, using this tool can greatly save your time and energy.</p>
+
+            <p>Experience the power of AI-driven document summarization and transform the way you process information. Try our PDF Summarizer today and discover how it can enhance your productivity, comprehension, and information processing capabilities!</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('summarizeBtn').addEventListener('click', function() {
+            const fileInput = document.getElementById('pdfFile');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Please select a PDF file');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            const progressBar = document.getElementById('progressBar');
+            const progressText = document.getElementById('progressText');
+            const progressBarContainer = document.getElementById('progressBarContainer');
+            const summaryContainer = document.getElementById('summary');
+            
+            progressBarContainer.classList.remove('hidden');
+            summaryContainer.innerText = '';
+            
+            let progress = 0;
+            let startTime = Date.now();
+            let summarized = false;
+            
+            progressBar.style.width = '0%';
+            progressText.textContent = 'Processing...';
+
+            function updateProgress() {
+                const elapsedTime = (Date.now() - startTime) / 1000; // elapsed seconds
+                const totalTime = summarized ? 60 : 180; // 1 minute if summarized, 3 minutes otherwise
+                
+                progress = (elapsedTime / totalTime) * 100;
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    if (!summarized) {
+                        alert('Network issue detected. Please try again later.');
+                        progressBarContainer.classList.add('hidden');
+                        return;
+                    }
+                }
+
+                progressBar.style.width = `${Math.min(progress, 100)}%`;
+                progressText.textContent = `Processing... ${Math.min(Math.round(progress), 100)}%`;
+            }
+
+            const progressInterval = setInterval(updateProgress, 100);
+
+            fetch('/summarize', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(err => { throw err; });
+                }
+                return response.json();
+            })
+            .then(data => {
+                summarized = true;
+                // Wait at least 1 minute before showing the result
+                const remainingTime = Math.max(0, 60000 - (Date.now() - startTime));
+                setTimeout(() => {
+                    clearInterval(progressInterval);
+                    progressBar.style.width = '100%';
+                    progressText.textContent = 'Summary generated!';
+                    summaryContainer.innerText = data.summary;
+                }, remainingTime);
+            })
+            .catch(error => {
+                clearInterval(progressInterval);
+                console.error('Error:', error);
+                progressBarContainer.classList.add('hidden');
+                summaryContainer.innerText = `Error: ${error.error || 'An unknown error occurred'}`;
+                alert('An error occurred while summarizing the PDF. Please check the console for more details.');
+            });
+        });
+    </script>
+</body>
+</html>
