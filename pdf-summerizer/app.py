@@ -6,6 +6,23 @@ from openai import OpenAI
 from PyPDF2 import PdfReader
 import traceback
 
+import traceback
+   from flask import jsonify
+
+   @app.errorhandler(Exception)
+   def handle_exception(e):
+       # 记录错误信息
+       print(f"Unhandled Exception: {str(e)}")
+       print(traceback.format_exc())
+       # 返回错误响应
+       return jsonify(error=str(e)), 500
+
+   # 在应用的主要路由之后添加一个测试路由
+   @app.route('/test')
+   def test_route():
+       return jsonify({"message": "Test route working"}), 200
+
+
 app = Flask(__name__)
 CORS(app)
 
