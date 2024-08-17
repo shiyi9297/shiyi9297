@@ -9,6 +9,8 @@ import traceback
 app = Flask(__name__)
 CORS(app)
 
+
+
 # 初始化 OpenAI 客户端
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
@@ -87,3 +89,6 @@ def summarize_pdf():
         return jsonify({"error": "Invalid file format"}), 400
 
 application = app
+
+if __name__ == "__main__":
+   app.run(debug=True, host='0.0.0.0', port=5000)
