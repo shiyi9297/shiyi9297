@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from openai import OpenAI
@@ -85,5 +86,4 @@ def summarize_pdf():
     else:
         return jsonify({"error": "Invalid file format"}), 400
 
-if __name__ == '__main__':
-    app.run(debug=True, port=3001)
+application = app
