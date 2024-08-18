@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+load_dotenv()
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from openai import OpenAI
