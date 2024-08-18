@@ -8,13 +8,12 @@ from PyPDF2 import PdfReader
 import traceback
 from flask import send_from_directory
 
-@app.route('/googlebb6cdc248bd8fa4a.html')
-def google_verification():
-    return send_from_directory('public', 'googlebb6cdc248bd8fa4a.html')
 app = Flask(__name__)
 CORS(app)
 
-
+@app.route('/googlebb6cdc248bd8fa4a.html')
+def google_verification():
+    return send_from_directory('public', 'googlebb6cdc248bd8fa4a.html')
 
 # 初始化 OpenAI 客户端
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))

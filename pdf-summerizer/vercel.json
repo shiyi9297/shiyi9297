@@ -2,12 +2,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "app.py",
+      "src": "wsgi.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
-    { "src": "/googlebb6cdc248bd8fa4a.html", "dest": "/public/googlebb6cdc248bd8fa4a.html" },
-    { "src": "/(.*)", "dest": "app.py" }
+    { "src": "/(.*)", "dest": "wsgi.py" }
   ]
 }
