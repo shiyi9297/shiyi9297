@@ -2,7 +2,7 @@
 
 This project provides a web interface for summarizing PDF documents using AI technology.
 
-## Setup
+##   Setup  
 1. Clone the repository
 2. Install dependencies: `pip install -r requirements.txt`
 3. Run the app: `python app.py`
