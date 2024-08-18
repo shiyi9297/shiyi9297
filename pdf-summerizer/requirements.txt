@@ -1,7 +1,5 @@
-os
 flask
 flask_cors
 openai
 PyPDF2
-dotenv
-traceback
+python-dotenv
